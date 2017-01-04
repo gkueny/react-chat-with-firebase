@@ -30,7 +30,7 @@ ou
 npm start
 ```
 
-rendez-vous ici : http://localhost:3000/
+rendez-vous ici : [http://localhost:3000/](http://localhost:3000/)
 
 Enjoy :)
 
