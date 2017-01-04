@@ -4,13 +4,7 @@ import '../assets/css/App.css';
 
 class AppComponent extends Component {
 
-    componentDidMount() {
-
-        this.generateRandomText();
-
-    }
-
-    generateRandomText = () => {
+    handleCLick = e => {
 
         let text = "";
         const maxSize = 15;
@@ -23,11 +17,6 @@ class AppComponent extends Component {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
         this.props.updateFakeMessage(text);
-    }
-
-    handleCLick = e => {
-
-        this.generateRandomText();
 
     }
 
