@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import {updateFakeMessage} from '../actions/general.actions';
 
-import AppComponent from '../components/app.component';
+import HomeComponent from '../components/home.component';
 
 const mapStateToProps = (state) => {
     return {
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+const HomepContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+ )(HomeComponent);
 
-export default AppContainer;
+export default HomepContainer;
