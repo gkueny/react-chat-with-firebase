@@ -23,15 +23,15 @@ class HomeComponent extends Component {
     render() {
         return (
             <div>
-                <p className="App-intro">
+                <p className="home-block">
                     Pouur commencer, met à jour le fichier
                     <code> src/components/app.component.js </code>
                     puis sauve et actualise.
                 </p>
-                <p className="App-intro">
+                <p className="home-block">
                     Voici une suite de lettre random : <b>{this.props.state.general.fakeMessage}</b>
                 </p>
-                <p className="App-intro">
+                <p className="home-block">
                     (Fais nous une capture d'écran si la suite signifie quelque-chose ! :D)
                 </p>
 
