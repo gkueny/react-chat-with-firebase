@@ -1,0 +1,2 @@
+// general
+export const UPDATEFAKEMESSAGE = 'UPDATEFAKEMESSAGE';

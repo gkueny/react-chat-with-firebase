@@ -6,14 +6,14 @@ import {Provider} from 'react-redux';
 
 import allReducers from './reducers';
 
-import App from './components/App';
+import AppContainer from './containers/app.container';
 import './assets/css/index.css';
 
 const store = createStore(allReducers);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <AppContainer />
     </Provider>,
     document.getElementById('root')
 );
