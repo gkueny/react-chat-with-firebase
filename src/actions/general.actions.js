@@ -1,11 +1,17 @@
-import {UPDATEFAKEMESSAGE} from './actions.type';
+import {UPDATENAME, VALIDATENAME} from './actions.type';
 
-export function updateFakeMessage(newFakeMessage) {
+export function updateName(name) {
 
     return {
-        type: UPDATEFAKEMESSAGE,
+        type: UPDATENAME,
         data: {
-            newFakeMessage
+            name
         }
+    };
+}
+
+export function validateName() {
+    return {
+        type: VALIDATENAME,
     };
 }

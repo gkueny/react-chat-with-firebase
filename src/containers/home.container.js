@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {updateFakeMessage} from '../actions/general.actions';
+import {updateName, validateName} from '../actions/general.actions';
 
 import HomeComponent from '../components/home.component';
 
@@ -14,13 +14,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateFakeMessage: (newFakeMessage) => dispatch(updateFakeMessage(newFakeMessage))
+        updateName: (name) => dispatch(updateName(name)),
+        validateName: () => dispatch(validateName())
     };
 };
 
-const HomepContainer = connect(
+const HomeContainer = connect(
     mapStateToProps,
     mapDispatchToProps
  )(HomeComponent);
 
-export default HomepContainer;
+export default HomeContainer;

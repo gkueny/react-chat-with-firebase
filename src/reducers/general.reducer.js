@@ -1,18 +1,26 @@
-import {UPDATEFAKEMESSAGE} from '../actions/actions.type';
+import {UPDATENAME, VALIDATENAME} from '../actions/actions.type';
 
 const initialState = {
-    fakeMessage : 'default'
+    name : null,
+    nameValidate: false
 };
 
 const generalReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case UPDATEFAKEMESSAGE : {
+        case UPDATENAME : {
 
             return {
                 ...state,
-                fakeMessage: action.data.newFakeMessage
+                name: action.data.name
+            };
+        }
+
+        case VALIDATENAME : {
+            return {
+                ...state,
+                nameValidate: true
             };
         }
 

@@ -1,41 +1,32 @@
 import React, {Component} from 'react';
 
+import ChatContainer from '../containers/chat.container';
+import GetUserNameComponent from '../components/get-user-name.component';
+
 import '../assets/css/home.css';
 
 class HomeComponent extends Component {
 
-    handleCLick = e => {
-
-        let text = "";
-        const maxSize = 15;
-
-        const possible = "abcdefghijklmnopqrstuvwxyz ";
-
-        const size = Math.floor(Math.random() * maxSize);
-
-        for( let i=0; i < size; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        this.props.updateFakeMessage(text);
-
+    validate = e => {
+        e.preventDefault();
+        this.props.validateName();
     }
 
     render() {
-        return (
-            <div>
-                <p className="home-block">
-                    Pouur commencer, met à jour le fichier
-                    <code> src/components/app.component.js </code>
-                    puis sauve et actualise.
-                </p>
-                <p className="home-block">
-                    Voici une suite de lettre random : <b>{this.props.state.general.fakeMessage}</b>
-                </p>
-                <p className="home-block">
-                    (Fais nous une capture d'écran si la suite signifie quelque-chose ! :D)
-                </p>
 
-                <button onClick={this.handleCLick}>Génerer une suite aléatoire !</button>
+        let chatContent = this.props.state.general.name && this.props.state.general.nameValidate ?
+            <ChatContainer name={this.props.state.general.name}/> :
+            (
+                <GetUserNameComponent
+                    updateName={(e) => this.props.updateName(e.target.value)}
+                    validate={(e) => this.validate(e)}
+                />
+            );
+
+        return (
+            <div id="main-home">
+                <h3> Messages </h3>
+                {chatContent}
             </div>
         );
     }
@@ -43,7 +34,8 @@ class HomeComponent extends Component {
 
 HomeComponent.propTypes = {
     state: React.PropTypes.object,
-    updateFakeMessage:  React.PropTypes.func,
+    updateName:  React.PropTypes.func,
+    validateName:  React.PropTypes.func,
 };
 
 export default HomeComponent;

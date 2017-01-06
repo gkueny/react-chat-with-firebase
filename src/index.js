@@ -12,7 +12,6 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import allReducers from './reducers';
 
 import AppComponent from './components/app.component';
-import LoginComponent from './components/login.component';
 import HomeContainer from './containers/home.container';
 
 import './assets/css/index.css';
@@ -28,7 +27,6 @@ ReactDOM.render(
         <Router history={history}>
             <Route path="/" component={AppComponent} >
                 <IndexRoute component={HomeContainer} />
-                <Route path="login" component={LoginComponent} />
             </Route>
         </Router>
     </Provider>,
