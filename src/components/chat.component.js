@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 
+import * as firebase from 'firebase';
+
 import '../assets/css/chat.css';
 
 class ChatComponent extends Component {
 
     constructor (props) {
         super(props);
+
+        const rootRef = firebase.database().ref();
+        this.messagesRef = rootRef.child('messages');
 
         this.state = {
             messageWriting : "",
@@ -14,10 +19,29 @@ class ChatComponent extends Component {
     }
 
     componentDidMount() {
-        this.scrollToBottom();
+        // notre listener
+        this.messagesRef.on('value', snapshot => {
+
+            let messages;
+
+            // les valeurs de la base de données sont récupérables via snapshot.val()
+            // On récupère ces données sous la forme [index] = value
+            messages = snapshot.val() ? Object.keys(snapshot.val()).map( key => {
+                return snapshot.val()[key];
+            }) :
+            messages = [];
+
+            // On met à jour notre state à partir des messages récupérés de Firebase
+            this.props.updateMessage(messages);
+        });
     }
+
     componentDidUpdate() {
         this.scrollToBottom();
+    }
+    // Et on supprime le listener lorsque le composant est détruit
+    componentWillUnmount() {
+        this.messagesRef.on('value').off();
     }
 
     scrollToBottom = () => {
@@ -33,11 +57,23 @@ class ChatComponent extends Component {
     sendNewMessage = e => {
         e.preventDefault();
 
-        this.props.updateMessage(this.props.name, this.state.messageWriting);
+        // On ajoute une nouvelle entrée dans notre base de données et on récupère la clé correspondante
+        const newMessageKey = this.messagesRef.push().key;
+
+        // On décrit notre nouvelle entrée
+        let updates = {};
+        updates['/messages/' + newMessageKey] = {
+            name : this.props.name,
+            text : this.state.messageWriting
+        };
+
+        // On met à jour
+        firebase.database().ref().update(updates);
 
         this.setState({
             messageWriting : ""
         });
+
     }
 
     render() {

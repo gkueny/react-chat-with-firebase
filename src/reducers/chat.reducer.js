@@ -12,19 +12,12 @@ const chatReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                messages: [
-                    ...state.messages,
-                    {
-                        name : action.data.name,
-                        text : action.data.message
-                    }
-
-                ]
+                messages: action.data.messages
             };
         }
 
         default:
-        
+
             return state;
     }
 };

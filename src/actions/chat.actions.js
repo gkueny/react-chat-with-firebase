@@ -1,12 +1,11 @@
 import {UPDATEMESSAGES} from './actions.type';
 
-export function updateMessage(name, message) {
+export function updateMessage(messages) {
 
     return {
         type: UPDATEMESSAGES,
         data: {
-            name,
-            message
+            messages
         }
     };
 }
