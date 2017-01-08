@@ -24,6 +24,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 persistStore(store);
 
+// Use your config (here it's my test firebase app)
 const config = {
     apiKey: "AIzaSyA5pPKO8J9sR1m3hyPu7WJw2MzIu0z0q6o",
     authDomain: "react-tchat-e518d.firebaseapp.com",
